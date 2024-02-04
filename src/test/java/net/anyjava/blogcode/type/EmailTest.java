@@ -3,6 +3,10 @@ package net.anyjava.blogcode.type;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmailTest {
@@ -25,5 +29,13 @@ class EmailTest {
         assertThrows(IllegalArgumentException.class, () -> {
             Email.of(email);
         });
+    }
+
+    @Test
+    void test11() {
+        var str = "9999-99-99";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        var actual = LocalDate.parse(str);
     }
 }
