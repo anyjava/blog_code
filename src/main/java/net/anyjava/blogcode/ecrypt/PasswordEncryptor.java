@@ -13,14 +13,14 @@ public class PasswordEncryptor {
     private final String iv = key.substring(0, 16); // 16byte
 
     // AES 암호화
-    EncryptPassword encrypt(PlainPassword data) {
+    EncryptPassword encrypt(PlainPassword plainPassword) {
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(), "AES");
             IvParameterSpec ivParamSpec = new IvParameterSpec(iv.getBytes());
             cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivParamSpec);
 
-            byte[] encrypted = cipher.doFinal(data.getPassword().getBytes("UTF-8"));
+            byte[] encrypted = cipher.doFinal(plainPassword.getPassword().getBytes("UTF-8"));
             return EncryptPassword.of(Base64.getEncoder().encodeToString(encrypted));
         } catch (Exception e) {
             throw new RuntimeException(e);
