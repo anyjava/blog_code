@@ -11,22 +11,22 @@ class PasswordEncryptionTest {
 
     @BeforeEach
     void setUp() {
-        sut = new PasswordEncryptionService();
+        sut = new PasswordEncryptionService(new PasswordEncryptor());
     }
 
     @Test
     @DisplayName("패스워드를 암호화 할 수 있다.")
     void encryptPassword() {
-        var result = sut.encryptPassword(new DecryptPassword("test"));
+        var result = sut.encryptPassword(PlainPassword.of("test"));
 
-        assertThat(result).isEqualTo(new EncryptPassword("encrypted:test"));
+        assertThat(result).isEqualTo(EncryptPassword.of("WkaOhqSK03Z1pSuPOdc03w=="));
     }
 
     @Test
     @DisplayName("암호화된 패스워드를 복호화 할 수 있다.")
     void decryptPassword() {
-        var result = sut.decryptPassword(new EncryptPassword("encrypted:test"));
+        var result = sut.decryptPassword(EncryptPassword.of("WkaOhqSK03Z1pSuPOdc03w=="));
 
-        assertThat(result).isEqualTo(new DecryptPassword("test"));
+        assertThat(result).isEqualTo(PlainPassword.of("test"));
     }
 }

@@ -1,13 +1,22 @@
 package net.anyjava.blogcode.ecrypt;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class PasswordEncryptionService {
-    EncryptPassword encryptPassword(DecryptPassword password) {
-        // 단순하게 구현함.
-        return new EncryptPassword("encrypted:" + password.getPassword());
+    private final PasswordEncryptor passwordEncryptor;
+
+    public PasswordEncryptionService(PasswordEncryptor passwordEncryptor) {
+        this.passwordEncryptor = passwordEncryptor;
     }
 
-    DecryptPassword decryptPassword(EncryptPassword password) {
+    public EncryptPassword encryptPassword(PlainPassword password) {
         // 단순하게 구현함.
-        return new DecryptPassword(password.getPassword().replace("encrypted:", ""));
+        return passwordEncryptor.encrypt(password);
+    }
+
+    public PlainPassword decryptPassword(EncryptPassword password) {
+        // 단순하게 구현함.
+        return passwordEncryptor.decrypt(password);
     }
 }

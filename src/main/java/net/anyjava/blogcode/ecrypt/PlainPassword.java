@@ -2,11 +2,15 @@ package net.anyjava.blogcode.ecrypt;
 
 import java.util.Objects;
 
-public class DecryptPassword {
+public class PlainPassword {
     private final String password;
 
-    DecryptPassword(String password) {
+    PlainPassword(String password) {
         this.password = password;
+    }
+
+    public static PlainPassword of(String password) {
+        return new PlainPassword(password);
     }
 
     public String getPassword() {
@@ -16,7 +20,7 @@ public class DecryptPassword {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof DecryptPassword that)) return false;
+        if (!(o instanceof PlainPassword that)) return false;
         return Objects.equals(password, that.password);
     }
 

@@ -9,6 +9,10 @@ public class EncryptPassword {
         this.password = password;
     }
 
+    public static EncryptPassword of(String password) {
+        return new EncryptPassword(password);
+    }
+
     public String getPassword() {
         return password;
     }
@@ -23,5 +27,12 @@ public class EncryptPassword {
     @Override
     public int hashCode() {
         return Objects.hash(password);
+    }
+
+    @Override
+    public String toString() {
+        return "EncryptPassword{" +
+                "password='" + password + '\'' +
+                '}';
     }
 }

@@ -30,12 +30,4 @@ class EmailTest {
             Email.of(email);
         });
     }
-
-    @Test
-    void test11() {
-        var str = "9999-99-99";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-        var actual = LocalDate.parse(str);
-    }
 }
