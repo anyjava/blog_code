@@ -4,19 +4,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PasswordEncryptionService {
-    private final PasswordEncryptor passwordEncryptor;
+    private final CardNumberEncryptor cardNumberEncryptor;
 
-    public PasswordEncryptionService(PasswordEncryptor passwordEncryptor) {
-        this.passwordEncryptor = passwordEncryptor;
+    public PasswordEncryptionService(CardNumberEncryptor cardNumberEncryptor) {
+        this.cardNumberEncryptor = cardNumberEncryptor;
     }
 
-    public EncryptPassword encryptPassword(PlainPassword password) {
+    public EncryptCardNumber encryptPassword(PlainCardNumber password) {
         // 단순하게 구현함.
-        return passwordEncryptor.encrypt(password);
+        return cardNumberEncryptor.encrypt(password);
     }
 
-    public PlainPassword decryptPassword(EncryptPassword password) {
+    public PlainCardNumber decryptPassword(EncryptCardNumber password) {
         // 단순하게 구현함.
-        return passwordEncryptor.decrypt(password);
+        return cardNumberEncryptor.decrypt(password);
     }
 }

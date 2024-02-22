@@ -1,8 +1,8 @@
 package net.anyjava.blogcode.controller;
 
-import net.anyjava.blogcode.ecrypt.EncryptPassword;
+import net.anyjava.blogcode.ecrypt.EncryptCardNumber;
 import net.anyjava.blogcode.ecrypt.PasswordEncryptionService;
-import net.anyjava.blogcode.ecrypt.PlainPassword;
+import net.anyjava.blogcode.ecrypt.PlainCardNumber;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,14 +15,14 @@ public class EncryptionController {
     }
 
     @GetMapping("/encrypt")
-    public EncryptPassword encrypt(String password) {
-        var plainPassword = PlainPassword.of(password);
+    public EncryptCardNumber encrypt(String password) {
+        var plainPassword = PlainCardNumber.of(password);
         return this.passwordEncryptionService.encryptPassword(plainPassword);
     }
 
     @GetMapping("/decrypt")
-    public PlainPassword decrypt(String password) {
-        var encryptPassword = EncryptPassword.of(password);
+    public PlainCardNumber decrypt(String password) {
+        var encryptPassword = EncryptCardNumber.of(password);
         return this.passwordEncryptionService.decryptPassword(encryptPassword);
     }
 }
