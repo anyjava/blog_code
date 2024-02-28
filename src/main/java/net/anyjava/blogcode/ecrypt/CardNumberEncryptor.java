@@ -20,7 +20,7 @@ public class CardNumberEncryptor {
             IvParameterSpec ivParamSpec = new IvParameterSpec(iv.getBytes());
             cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivParamSpec);
 
-            byte[] encrypted = cipher.doFinal(plainCardNumber.getPassword().getBytes("UTF-8"));
+            byte[] encrypted = cipher.doFinal(plainCardNumber.getCardNumber().getBytes("UTF-8"));
             return EncryptCardNumber.of(Base64.getEncoder().encodeToString(encrypted));
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -35,7 +35,7 @@ public class CardNumberEncryptor {
             IvParameterSpec ivParamSpec = new IvParameterSpec(iv.getBytes());
             cipher.init(Cipher.DECRYPT_MODE, keySpec, ivParamSpec);
 
-            byte[] decodedBytes = Base64.getDecoder().decode(encryptedData.getPassword());
+            byte[] decodedBytes = Base64.getDecoder().decode(encryptedData.getCardNumber());
             byte[] decrypted = cipher.doFinal(decodedBytes);
             return PlainCardNumber.of(new String(decrypted));
         } catch (Exception e) {

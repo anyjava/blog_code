@@ -13,7 +13,7 @@ class CardNumberEncryptorTest {
         var sut = new CardNumberEncryptor();
         var result = sut.encrypt(PlainCardNumber.of("test"));
 
-        assertThat(result.getPassword()).isEqualTo("WkaOhqSK03Z1pSuPOdc03w==");
+        assertThat(result.getCardNumber()).isEqualTo("WkaOhqSK03Z1pSuPOdc03w==");
     }
 
     @DisplayName("암호화된 카드번호를 복호화 할 수 있다.")
@@ -22,6 +22,6 @@ class CardNumberEncryptorTest {
         var sut = new CardNumberEncryptor();
         var result = sut.decrypt(EncryptCardNumber.of("WkaOhqSK03Z1pSuPOdc03w=="));
 
-        assertThat(result.getPassword()).isEqualTo("test");
+        assertThat(result.getCardNumber()).isEqualTo("test");
     }
 }

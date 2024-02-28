@@ -3,29 +3,29 @@ package net.anyjava.blogcode.ecrypt;
 import java.util.Objects;
 
 public class PlainCardNumber {
-    private final String password;
+    private final String cardNumber;
 
-    PlainCardNumber(String password) {
-        this.password = password;
+    PlainCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
     public static PlainCardNumber of(String password) {
         return new PlainCardNumber(password);
     }
 
-    public String getPassword() {
-        return password;
+    public String getCardNumber() {
+        return cardNumber;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof PlainCardNumber that)) return false;
-        return Objects.equals(password, that.password);
+        return Objects.equals(cardNumber, that.cardNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(password);
+        return Objects.hash(cardNumber);
     }
 }
