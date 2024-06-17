@@ -1,5 +1,8 @@
 package net.anyjava.blogcode.poeaa.chapter09;
 
+import net.anyjava.blogcode.poeaa.chapter09.service_layer.DbHelper;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,12 +12,16 @@ public class Contract {
     private Money revenue;
     private MfDate whenSigned;
     private Long id;
-
+    private final String administratorEmailAddress = "test@gmail.com";
 
     public Contract(Product product, Money revenue, MfDate whenSigned) {
         this.product = product;
         this.revenue = revenue;
         this.whenSigned = whenSigned;
+    }
+
+    public static Contract readForUpdate(long contractNumber) {
+        return DbHelper.load(contractNumber);
     }
 
     public Money recognizedRevenue(MfDate asOf) {
@@ -37,5 +44,13 @@ public class Contract {
 
     public MfDate getWhenSigned() {
         return this.whenSigned;
+    }
+
+    public void calculateRecognitions() {
+        product.calculateRevenueRecognitions(this);
+    }
+
+    public String getAdministratorEmailAddress() {
+        return administratorEmailAddress;
     }
 }
